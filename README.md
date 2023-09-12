@@ -1,11 +1,16 @@
 # Airport manager
 
+This is an example project, 
+used to learn about Java, Spring Boot and SQL.
+
 
 ## Running the project
 
 Run using Podman (for Docker replace `podman` with `docker` and `podman-compose` with `docker compose`):
 ```bash
+podman-compose build airport airplane-module steward-module
 podman-compose up airport
+podman-compose down airport
 
 # or
 
@@ -54,6 +59,11 @@ gradle clean bootRun
 # compile and run
 gradle :airplane-module:bootJar
 java -jar ./build/libs/airplane-module-*.jar 
+
+
+# remove podman images
+podman rmi localhost/airplane-module localhost/airport localhost/steward-module
+podman images
 ```
 
 
