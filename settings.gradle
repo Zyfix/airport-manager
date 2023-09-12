@@ -1,1 +1,5 @@
 rootProject.name = 'airport-manager'
+
+include 'airplane-module'
+include 'steward-module'
+include 'airport'

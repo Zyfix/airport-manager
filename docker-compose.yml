@@ -1,0 +1,41 @@
+version: "3.7"
+
+networks:
+  dev-network:
+    driver: bridge
+
+services:
+  airport:
+    image: airport
+    build:
+      context: ./airport
+    networks:
+      - dev-network
+    ports:
+        - "8080:8080"
+    environment:
+      airplane_url: "http://172.17.0.1:8081/"
+      steward_url: "http://172.17.0.1:8082/"
+    depends_on:
+      - airplane-module
+      - steward-module
+
+
+  airplane-module:
+    image: airplane-module
+    build:
+      context: ./airplane-module
+    ports:
+        - "8081:8080"
+    networks:
+      - dev-network
+
+  steward-module:
+    image: steward-module
+    build:
+      context: steward-module
+    ports:
+      - "8082:8080"
+    networks:
+      - dev-network
+
